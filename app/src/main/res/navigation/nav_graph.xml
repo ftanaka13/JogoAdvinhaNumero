@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
 
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="br.com.faculdadeimpacta.advinhanumero.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/action_startFragment_to_tentativaFragment"
+            app:destination="@id/tentativaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tentativaFragment"
+        android:name="br.com.faculdadeimpacta.advinhanumero.TentativaFragment"
+        android:label="fragment_tentativa"
+        tools:layout="@layout/fragment_tentativa">
+        <action
+            android:id="@+id/action_tentativaFragment_to_chuteMaiorFragment"
+            app:destination="@id/chuteMaiorFragment" />
+        <action
+            android:id="@+id/action_tentativaFragment_to_chuteMenorFragment"
+            app:destination="@id/chuteMenorFragment" />
+        <action
+            android:id="@+id/action_tentativaFragment_to_parabensFragment"
+            app:destination="@id/parabensFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chuteMaiorFragment"
+        android:name="br.com.faculdadeimpacta.advinhanumero.ChuteMaiorFragment"
+        android:label="fragment_chute_maior"
+        tools:layout="@layout/fragment_chute_maior">
+        <action
+            android:id="@+id/action_chuteMaiorFragment_to_tentativaFragment"
+            app:destination="@id/tentativaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chuteMenorFragment"
+        android:name="br.com.faculdadeimpacta.advinhanumero.ChuteMenorFragment"
+        android:label="fragment_chute_menor"
+        tools:layout="@layout/fragment_chute_menor">
+        <action
+            android:id="@+id/action_chuteMenorFragment_to_tentativaFragment"
+            app:destination="@id/tentativaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parabensFragment"
+        android:name="br.com.faculdadeimpacta.advinhanumero.ParabensFragment"
+        android:label="fragment_parabens"
+        tools:layout="@layout/fragment_parabens">
+        <action
+            android:id="@+id/action_parabensFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
 </navigation>
