@@ -1,6 +1,7 @@
 package br.com.faculdadeimpacta.advinhanumero
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +29,8 @@ class TentativaFragment : Fragment() {
         super.onStart()
 
         binding.buttonChutar.setOnClickListener {
-            val valorDigitado = binding.editTextChute.toString().toIntOrNull()
+            val valorDigitado = binding.editTextChute.text.toString().toIntOrNull()
+            Log.d("TentativaFragment", "valorDigitado $valorDigitado")
             if (valorDigitado == null || valorDigitado < 0 || valorDigitado > 10) {
                 binding.editTextChute.error = "Por favor digite um número inteiro entre 0 e 10"
                 return@setOnClickListener

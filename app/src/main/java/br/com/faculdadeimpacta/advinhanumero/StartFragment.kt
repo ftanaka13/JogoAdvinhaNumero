@@ -1,6 +1,7 @@
 package br.com.faculdadeimpacta.advinhanumero
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,8 +28,10 @@ class StartFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         binding.buttonComecar.setOnClickListener {
+            val numeroSorteado = Random.nextInt(11)
+            Log.d("StartFragment", "numeroSorteado: $numeroSorteado")
             val direction =
-                StartFragmentDirections.actionStartFragmentToTentativaFragment(Random.nextInt(11))
+                StartFragmentDirections.actionStartFragmentToTentativaFragment(numeroSorteado)
             findNavController().navigate(direction)
         }
     }
