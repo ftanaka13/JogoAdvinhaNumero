@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_chuteMaiorFragment_to_tentativaFragment"
             app:destination="@id/tentativaFragment" />
+        <argument
+            android:name="numeroSorteado"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/chuteMenorFragment"
@@ -49,6 +52,9 @@
         <action
             android:id="@+id/action_chuteMenorFragment_to_tentativaFragment"
             app:destination="@id/tentativaFragment" />
+        <argument
+            android:name="numeroSorteado"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/parabensFragment"

@@ -34,8 +34,13 @@ class TentativaFragment : Fragment() {
                 return@setOnClickListener
             }
             val directions = when {
-                valorDigitado < args.numeroSorteado -> TentativaFragmentDirections.actionTentativaFragmentToChuteMenorFragment()
-                valorDigitado > args.numeroSorteado -> TentativaFragmentDirections.actionTentativaFragmentToChuteMaiorFragment()
+                valorDigitado < args.numeroSorteado -> TentativaFragmentDirections.actionTentativaFragmentToChuteMenorFragment(
+                    args.numeroSorteado
+                )
+
+                valorDigitado > args.numeroSorteado -> TentativaFragmentDirections.actionTentativaFragmentToChuteMaiorFragment(
+                    args.numeroSorteado
+                )
                 else -> TentativaFragmentDirections.actionTentativaFragmentToParabensFragment()
             }
             findNavController().navigate(directions)
