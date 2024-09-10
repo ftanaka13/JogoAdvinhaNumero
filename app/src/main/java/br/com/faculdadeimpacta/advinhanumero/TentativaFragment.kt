@@ -5,55 +5,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import br.com.faculdadeimpacta.advinhanumero.databinding.FragmentTentativaBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TentativaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TentativaFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentTentativaBinding? = null
+    private val binding get() = _binding!!
+    private val args: TentativaFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentTentativaBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tentativa, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TentativaFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TentativaFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onStart() {
+        super.onStart()
+
+        binding.buttonChutar.setOnClickListener {
+            val valorDigitado = binding.editTextChute.toString().toIntOrNull()
+            if (valorDigitado == null || valorDigitado < 0 || valorDigitado > 10) {
+                binding.editTextChute.error = "Por favor digite um número inteiro entre 0 e 10"
+                return@setOnClickListener
             }
+            val directions = when {
+                valorDigitado < args.numeroSorteado -> TentativaFragmentDirections.actionTentativaFragmentToChuteMenorFragment()
+                valorDigitado > args.numeroSorteado -> TentativaFragmentDirections.actionTentativaFragmentToChuteMaiorFragment()
+                else -> TentativaFragmentDirections.actionTentativaFragmentToParabensFragment()
+            }
+            findNavController().navigate(directions)
+        }
     }
 }

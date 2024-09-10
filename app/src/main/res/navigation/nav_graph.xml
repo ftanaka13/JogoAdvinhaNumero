@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_tentativaFragment_to_parabensFragment"
             app:destination="@id/parabensFragment" />
+        <argument
+            android:name="numeroSorteado"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/chuteMaiorFragment"

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import br.com.faculdadeimpacta.advinhanumero.databinding.FragmentStartBinding
+import kotlin.random.Random
 
 class StartFragment : Fragment() {
 
@@ -26,7 +27,8 @@ class StartFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         binding.buttonComecar.setOnClickListener {
-            val direction = StartFragmentDirections.actionStartFragmentToTentativaFragment()
+            val direction =
+                StartFragmentDirections.actionStartFragmentToTentativaFragment(Random.nextInt(11))
             findNavController().navigate(direction)
         }
     }
